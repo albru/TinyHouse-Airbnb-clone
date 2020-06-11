@@ -1,3 +1,5 @@
 node_modules
 build
-src/database/index.ts
+.env
+yarn-debug.log*
+yarn-error.log*
