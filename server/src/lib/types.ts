@@ -7,6 +7,7 @@ export interface Listing {
   address: string;
   price: number;
   numOfGuests: number;
+  numOfBaths: number;
   numOfBeds: number;
   rating: number;
 }
