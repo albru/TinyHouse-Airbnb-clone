@@ -26,7 +26,6 @@ export const listingResolvers: IResolvers = {
       if (!deleteResult.value) {
         throw new Error("failed to delete listing");
       }
-      console.log(deleteResult);
       return deleteResult.value;
     },
   },
