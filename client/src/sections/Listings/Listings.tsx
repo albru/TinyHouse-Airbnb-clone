@@ -35,7 +35,7 @@ interface Props {
 }
 
 export const Listings = ({ title }: Props) => {
-  const { data, refetch } = useQuery<ListingsData>(LISTINGS);
+  const { data, refetch, loading, error } = useQuery<ListingsData>(LISTINGS);
 
   const deleteListing = async (id: string) => {
     await server.fetch<DeleteListingData, DeleteListingVariables>({
@@ -44,12 +44,20 @@ export const Listings = ({ title }: Props) => {
     });
     refetch();
   };
-  const listingsList = data?.listings.map((listing) => (
-    <>
-      <li key={listing.id}>{listing.title}</li>
+  const listingsList = data?.listings.map((listing, i) => (
+    <li key={i}>
+      {listing.title}
       <button onClick={() => deleteListing(listing.id)}>Delete Listing!</button>
-    </>
+    </li>
   ));
+
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  if (error) {
+    return <h2>Something went wrong</h2>;
+  }
 
   return (
     <div>
