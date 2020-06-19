@@ -1,4 +1,5 @@
 {
+  "name": "tinyhouse-server",
   "dependencies": {
     "apollo-server-express": "^2.14.3",
     "body-parser": "^1.19.0",
