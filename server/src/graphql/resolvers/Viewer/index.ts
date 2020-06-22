@@ -1,14 +1,10 @@
 import crypto from "crypto";
-<<<<<<< HEAD
 import { Request, Response } from "express";
-=======
->>>>>>> cb637135c138cbaa0cece5399c0765e4c7e3f336
 import { IResolvers } from "apollo-server-express";
 import { Google } from "../../../lib/api";
 import { Viewer, Database, User } from "../../../lib/types";
 import { LogInArgs } from "./types";
 
-<<<<<<< HEAD
 const cookieOptions = {
   httpOnly: true,
   sameSite: true,
@@ -21,12 +17,6 @@ const logInViaGoogle = async (
   token: string,
   db: Database,
   res: Response
-=======
-const logInViaGoogle = async (
-  code: string,
-  token: string,
-  db: Database
->>>>>>> cb637135c138cbaa0cece5399c0765e4c7e3f336
 ): Promise<User | undefined> => {
   const { user } = await Google.logIn(code);
 
@@ -95,7 +85,6 @@ const logInViaGoogle = async (
     viewer = insertResult.ops[0];
   }
 
-<<<<<<< HEAD
   res.cookie("viewer", userId, {
     ...cookieOptions,
     maxAge: 365 * 24 * 60 * 60 * 1000
@@ -122,8 +111,6 @@ const logInViaCookie = async (
     res.clearCookie("viewer", cookieOptions);
   }
 
-=======
->>>>>>> cb637135c138cbaa0cece5399c0765e4c7e3f336
   return viewer;
 };
 
@@ -141,24 +128,15 @@ export const viewerResolvers: IResolvers = {
     logIn: async (
       _root: undefined,
       { input }: LogInArgs,
-<<<<<<< HEAD
       { db, req, res }: { db: Database; req: Request; res: Response }
-=======
-      { db }: { db: Database }
->>>>>>> cb637135c138cbaa0cece5399c0765e4c7e3f336
     ): Promise<Viewer> => {
       try {
         const code = input ? input.code : null;
         const token = crypto.randomBytes(16).toString("hex");
 
         const viewer: User | undefined = code
-<<<<<<< HEAD
           ? await logInViaGoogle(code, token, db, res)
           : await logInViaCookie(token, db, req, res);
-=======
-          ? await logInViaGoogle(code, token, db)
-          : undefined;
->>>>>>> cb637135c138cbaa0cece5399c0765e4c7e3f336
 
         if (!viewer) {
           return { didRequest: true };
@@ -175,7 +153,6 @@ export const viewerResolvers: IResolvers = {
         throw new Error(`Failed to log in: ${error}`);
       }
     },
-<<<<<<< HEAD
     logOut: (
       _root: undefined,
       _args: {},
@@ -183,10 +160,6 @@ export const viewerResolvers: IResolvers = {
     ): Viewer => {
       try {
         res.clearCookie("viewer", cookieOptions);
-=======
-    logOut: (): Viewer => {
-      try {
->>>>>>> cb637135c138cbaa0cece5399c0765e4c7e3f336
         return { didRequest: true };
       } catch (error) {
         throw new Error(`Failed to log out: ${error}`);

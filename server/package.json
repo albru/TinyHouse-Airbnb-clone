@@ -13,10 +13,7 @@
   },
   "devDependencies": {
     "@types/body-parser": "^1.17.0",
-<<<<<<< HEAD
     "@types/cookie-parser": "^1.4.2",
-=======
->>>>>>> cb637135c138cbaa0cece5399c0765e4c7e3f336
     "@types/express": "^4.17.0",
     "@types/graphql": "^14.2.1",
     "@types/lodash.merge": "^4.6.6",
