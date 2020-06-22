@@ -1,12 +1,16 @@
 import { Collection, ObjectId } from "mongodb";
 
-export enum ListingType {
-  Apartment = "APARTMENT",
-  House = "HOUSE",
+export interface Viewer {
+  _id?: string;
+  token?: string;
+  avatar?: string;
+  walletId?: string;
+  didRequest: boolean;
 }
 
-interface BookingIndex {
-  [key: string]: BookingsIndexYear;
+export enum ListingType {
+  Apartment = "apartment",
+  House = "house"
 }
 
 export interface BookingsIndexMonth {
@@ -37,7 +41,7 @@ export interface Listing {
   admin: string;
   city: string;
   bookings: ObjectId[];
-  bookingsIndex: BookingIndex;
+  bookingsIndex: BookingsIndexYear;
   price: number;
   numOfGuests: number;
 }
