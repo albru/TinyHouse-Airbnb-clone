@@ -22,7 +22,10 @@ interface MatchParams {
 const { Content } = Layout;
 const PAGE_LIMIT = 4;
 
-export const User = ({ viewer, match }: Props & RouteComponentProps<MatchParams>) => {
+export const User = ({
+  viewer,
+  match
+}: Props & RouteComponentProps<MatchParams>) => {
   const [listingsPage, setListingsPage] = useState(1);
   const [bookingsPage, setBookingsPage] = useState(1);
 
